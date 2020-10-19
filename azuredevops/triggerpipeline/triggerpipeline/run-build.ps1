@@ -5,9 +5,7 @@ Param (
     [Parameter(Mandatory = $true)][String]$DevOpsPAT,
     [Parameter(Mandatory = $true)][String]$PipelineName,
     [Parameter(Mandatory = $false)][String]$Branch,
-    [Parameter(Mandatory = $false)][String]$Description = "Automatically triggered release",
-    [Parameter(Mandatory = $true)][String]$TestLocation,
-    [Parameter(Mandatory = $true)][String]$NumberOfImages
+    [Parameter(Mandatory = $false)][String]$Description = "Automatically triggered release"
 )
 
 $ErrorActionPreference = 'Stop';
@@ -37,10 +35,6 @@ if ($BuildDefinitions -and $BuildDefinitions.count -eq 1) {
             }
             sourceBranch = $Branch
             reason = "userCreated"  
-            variables = New-Object PSObject -Property @{
-                    TestLocation = $TestLocation
-                    NumberOfImages = $NumberOfImages
-                }
         }
 
         $jsonbody = $Build | ConvertTo-Json -Depth 100
