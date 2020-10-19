@@ -37,8 +37,10 @@ if ($BuildDefinitions -and $BuildDefinitions.count -eq 1) {
             }
             sourceBranch = $Branch
             reason = "userCreated"  
-            TestLocation = $TestLocation
-            NumberOfImages = $NumberOfImages
+            variables = New-Object PSObject -Property @{
+                    TestLocation = $TestLocation
+                    NumberOfImages = $NumberOfImages
+                }
         }
 
         $jsonbody = $Build | ConvertTo-Json -Depth 100
